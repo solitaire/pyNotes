@@ -37,8 +37,8 @@ class SnippetDialog(QtGui.QDialog, Ui_Dialog):
           
     def accepted(self):
         result = self.__pygmentize("%s" % (self.textEdit.toPlainText()))
-        self.text_edit.textCursor().insertHtml(result)
-        self.text_edit.textCursor().clearSelection()
+        self.text_edit.append(result)
+        self.text_edit.insertPlainText('\n')
         
     def rejected(self):
         self.close()

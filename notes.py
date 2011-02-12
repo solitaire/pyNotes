@@ -75,21 +75,20 @@ class NotesMain(QtGui.QMainWindow):
 		self.ui.setupUi(self)
 		
 		#assign models to views
-		self.notes_model = NoteModel()
 		self.notebooks_model = NotebookModel()
 		self.tags_model = TagModel()
-		self.notes_model.addTagging(self.tags_model)
+		self.notes_base_model = NoteModel()
+		self.notes_base_model.addTagging(self.tags_model)
 		
-		proxyModel = QSortFilterProxyModel()
-		proxyModel.setSourceModel(self.notes_model)
+		self.notes_model = QSortFilterProxyModel()
+		self.notes_model.setSourceModel(self.notes_base_model)
 		
-
-		
-		self.ui.notes.setModel(proxyModel)
+		self.ui.notes.setModel(self.notes_model)
 		self.ui.notebooks.setModel(self.notebooks_model)
 		self.ui.tags.setModel(self.tags_model)
 		self.ui.notes.setColumnHidden(BODY, True)
 		self.ui.notes.setColumnHidden(TAGS, True)
+		self.ui.notes.sortByColumn(CREATED_AT, Qt.DescendingOrder)
 		
 		self.note_mapper = NoteMapper(self, self.notes_model, [self.ui.notesTextEdit, self.ui.titleEdit, self.ui.notebooksBox, self.ui.notesTags])
 		self.note_mapper.toFirst()

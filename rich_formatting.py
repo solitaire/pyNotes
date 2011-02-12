@@ -29,9 +29,9 @@ class RichFormatting:
         self.connect_actions()
     
     def connect_actions(self):
-        QtCore.QObject.connect(self.ui.boldButton, QtCore.SIGNAL("clicked()"), self.text_bold)
-        QtCore.QObject.connect(self.ui.italicButton, QtCore.SIGNAL("clicked()"), self.text_italic)
-        QtCore.QObject.connect(self.ui.underlineButton, QtCore.SIGNAL("clicked()"), self.text_underline)
+        self.ui.boldButton.clicked.connect(self.text_bold)
+        self.ui.italicButton.clicked.connect(self.text_italic)
+        self.ui.underlineButton.clicked.connect(self.text_underline)
         
         QtCore.QObject.connect(self.ui.centerButton, QtCore.SIGNAL("clicked()"),
                                 lambda format="center": self.text_align(format))
@@ -50,6 +50,7 @@ class RichFormatting:
         
         self.__alignment_changed(self.ui.notesTextEdit.alignment())
     
+    @QtCore.pyqtSlot()
     def text_bold(self):
         format = QtGui.QTextCharFormat()
         if self.ui.boldButton.isChecked():
@@ -58,11 +59,13 @@ class RichFormatting:
             format.setFontWeight(QtGui.QFont.Normal)
         self.apply_on_selection(format)
         
+    @QtCore.pyqtSlot()
     def text_italic(self):
         format = QtGui.QTextCharFormat()
         format.setFontItalic(self.ui.italicButton.isChecked())
         self.apply_on_selection(format)
         
+    @QtCore.pyqtSlot()
     def text_underline(self):
         format = QtGui.QTextCharFormat()
         format.setFontUnderline(self.ui.underlineButton.isChecked())
