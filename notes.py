@@ -79,9 +79,13 @@ class NotesMain(QtGui.QMainWindow):
 		self.notebooks_model = NotebookModel()
 		self.tags_model = TagModel()
 		self.notes_model.addTagging(self.tags_model)
+		
+		proxyModel = QSortFilterProxyModel()
+		proxyModel.setSourceModel(self.notes_model)
+		
 
 		
-		self.ui.notes.setModel(self.notes_model)
+		self.ui.notes.setModel(proxyModel)
 		self.ui.notebooks.setModel(self.notebooks_model)
 		self.ui.tags.setModel(self.tags_model)
 		self.ui.notes.setColumnHidden(BODY, True)

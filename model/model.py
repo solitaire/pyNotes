@@ -86,6 +86,7 @@ class NoteModel(QAbstractTableModel):
         for row in range(rows):
             self.notes.insert(position + row, new_note)
         self.endInsertRows()
+        self.load()
         return True
 
     def removeRows(self, position, rows=1, index=QModelIndex()):

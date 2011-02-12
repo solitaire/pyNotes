@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/notes.ui'
 #
-# Created: Sat Feb 12 01:19:54 2011
+# Created: Sat Feb 12 13:35:44 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -47,9 +47,10 @@ class Ui_Notebook(object):
         self.notes.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
         self.notes.setRootIsDecorated(False)
         self.notes.setItemsExpandable(False)
+        self.notes.setSortingEnabled(True)
         self.notes.setExpandsOnDoubleClick(False)
         self.notes.setObjectName("notes")
-        self.notes.header().setVisible(False)
+        self.notes.header().setVisible(True)
         self.gridLayout_4.addWidget(self.notes, 1, 0, 1, 2)
         self.horizontalLayout_3 = QtGui.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")

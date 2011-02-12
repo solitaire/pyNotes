@@ -38,8 +38,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/page_white_acrobat.png</normaloff>:/icons/icons/page_white_acrobat.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/page_white_code_red.png</normaloff>:/icons/page_white_code_red.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -61,8 +61,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/page_white_add.png</normaloff>:/icons/icons/page_white_add.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/page_add.png</normaloff>:/icons/page_add.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -84,8 +84,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/page_world.png</normaloff>:/icons/icons/page_world.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/page_world.png</normaloff>:/icons/page_world.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -107,8 +107,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/page_white_code_red.png</normaloff>:/icons/icons/page_white_code_red.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/page_white_code_red.png</normaloff>:/icons/page_white_code_red.png</iconset>
        </property>
       </widget>
      </item>
@@ -161,8 +161,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/arrow_undo.png</normaloff>:/icons/icons/arrow_undo.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/arrow_undo.png</normaloff>:/icons/arrow_undo.png</iconset>
        </property>
       </widget>
      </item>
@@ -184,8 +184,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/arrow_redo.png</normaloff>:/icons/icons/arrow_redo.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/arrow_redo.png</normaloff>:/icons/arrow_redo.png</iconset>
        </property>
       </widget>
      </item>
@@ -207,8 +207,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/paste_plain.png</normaloff>:/icons/icons/paste_plain.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/paste_plain.png</normaloff>:/icons/paste_plain.png</iconset>
        </property>
       </widget>
      </item>
@@ -230,8 +230,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/cut.png</normaloff>:/icons/icons/cut.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/cut.png</normaloff>:/icons/cut.png</iconset>
        </property>
       </widget>
      </item>
@@ -253,8 +253,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/text_bold.png</normaloff>:/icons/icons/text_bold.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/text_bold.png</normaloff>:/icons/text_bold.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -288,8 +288,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/text_italic.png</normaloff>:/icons/icons/text_italic.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/text_italic.png</normaloff>:/icons/text_italic.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -323,8 +323,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/text_underline.png</normaloff>:/icons/icons/text_underline.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/text_underline.png</normaloff>:/icons/text_underline.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -358,8 +358,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/text_align_left.png</normaloff>:/icons/icons/text_align_left.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/text_align_left.png</normaloff>:/icons/text_align_left.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -393,8 +393,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/text_align_center.png</normaloff>:/icons/icons/text_align_center.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/text_align_center.png</normaloff>:/icons/text_align_center.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -428,8 +428,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/text_align_right.png</normaloff>:/icons/icons/text_align_right.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/text_align_right.png</normaloff>:/icons/text_align_right.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -463,8 +463,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/icons/icons/text_align_justify.png</normaloff>:/icons/icons/text_align_justify.png</iconset>
+        <iconset resource="../icons/icons.qrc">
+         <normaloff>:/icons/text_align_justify.png</normaloff>:/icons/text_align_justify.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -501,7 +501,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../icons.qrc"/>
+  <include location="../icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>
