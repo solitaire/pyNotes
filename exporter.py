@@ -47,7 +47,8 @@ class PdfExporter(Exporter):
         printer.setPageSize(self.page_size)
         printer.setOutputFormat(output_format)
         printer.setOutputFileName(self.filename)
-        self.editor.print_(printer)        
+        if not self.filename.isEmpty():
+            self.editor.print_(printer)        
         
 class HtmlExporter(Exporter):
     def __init__(self, parent, editor):
@@ -57,9 +58,9 @@ class HtmlExporter(Exporter):
         self.file_browser()
         content = self.editor.toHtml()
         
-        with open(self.filename, 'w') as file:
-            file.write(content)
-        print content
+        if not self.filename.isEmpty():
+            with open(self.filename, 'w') as file:
+                file.write(content)
 
 class PlainTextExporter(Exporter):
     def __init__(self, parent, editor):
@@ -68,8 +69,10 @@ class PlainTextExporter(Exporter):
     def export(self, output_format=None):
         self.file_browser()
         content = self.editor.toPlainText()
-        with open(self.filename, 'w') as file:
-            file.write(content)
+        if not self.filename.isEmpty():
+            with open(self.filename, 'w') as file:
+                file.write(content)
+            
             
 
 #Simple wrapper            
@@ -77,20 +80,22 @@ class NoteExporter():
     def __init__(self, parent, ui):
         self.parent = parent
         self.ui = ui
-        QtCore.QObject.connect(self.ui.exportToPdfButton, QtCore.SIGNAL("clicked()"), self.exportToPdf)
-        QtCore.QObject.connect(self.ui.exportToHtmlButton, QtCore.SIGNAL("clicked()"), self.exportToHTML)
-        QtCore.QObject.connect(self.ui.exportToPlainTextButton, QtCore.SIGNAL("clicked()"), self.exportToPlainText)
-        
+        self.ui.exportToPdfButton.clicked.connect(self.exportToPdf)
+        self.ui.exportToHtmlButton.clicked.connect(self.exportToHTML)
+        self.ui.exportToPlainTextButton.clicked.connect(self.exportToPlainText)
+       
+    @QtCore.pyqtSlot() 
     def exportToPdf(self):
         pdfExporter = PdfExporter(self.parent, self.ui.notesTextEdit, QtGui.QPrinter.A4)
         pdfExporter.export(QtGui.QPrinter.PdfFormat)
         print(self.ui.notesTextEdit.toPlainText())
         
-        
+    @QtCore.pyqtSlot()  
     def exportToHTML(self):
         htmlExporter = HtmlExporter(self.parent, self.ui.notesTextEdit)
         htmlExporter.export()
-        
+    
+    @QtCore.pyqtSlot()   
     def exportToPlainText(self):
         plainExporter = PlainTextExporter(self.parent, self.ui.notesTextEdit)
         plainExporter.export()    
