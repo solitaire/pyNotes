@@ -37,12 +37,13 @@ metadata.bind.echo = True
 setup_all(True)
 if not os.path.exists(dbfile):
     create_all()
+    
 
+NOTE_COLUMNS = ["Title", "Notebook", "Created at", "Updated at"]
 
-class NoteModel(QAbstractTableModel):
+class NoteModel(QAbstractTableModel, QSortFilterProxyModel):
     def __init__(self):
         super(QAbstractTableModel, self).__init__()
-        self.columns = ["Title", "Notebook", "Created at", "Updated at"]
         self.notes = []
         self.load()
 
@@ -79,7 +80,7 @@ class NoteModel(QAbstractTableModel):
 
     def headerData(self, section, orientation, role=Qt.DisplayRole):
         if orientation == Qt.Horizontal and role == Qt.DisplayRole:
-            return QVariant(self.columns[section])
+            return QVariant(NOTE_COLUMNS[section])
 
     def insertRows(self, position, new_note, rows=1, index=QModelIndex()):
         self.beginInsertRows(QModelIndex(), position, position + rows -1)
@@ -148,35 +149,40 @@ class NoteModel(QAbstractTableModel):
 
 
     def getByNotebook(self, index):
-        self.reset()
+        self.beginResetModel()
         notebook_name= "%s" % (index.data().toString())
         nb = Notebook.get_by(name=notebook_name)
-        self.notes = Note.query.filter_by(notebook=nb).all()
+        self.notes = Note.query.filter_by(notebook=nb).all() 
         session.commit()
+        self.endResetModel()
+              
 
     def getByTag(self,index):
-        self.reset()
+        self.beginResetModel()
         tag_name = "%s" % (index.data().toString())
         self.notes = Note.query.filter(Note.tags.any(name=tag_name)).all()
         session.commit()
+        self.endResetModel()
 
     def uncategorized(self):
-        self.reset()
+        self.beginResetModel()
         self.notes = Note.query.filter(Note.notebook == None).all()
         session.commit()
+        self.endResetModel()
 
     def search(self, query):
         self.reset()
         self.notes = Note.query.filter(Note.body.like("%{0}%".format(query))).all()
-        print(self.notes)
         session.commit()
 
     def clear(self):
         self.notes = []
 
     def load(self):
-        self.reset()
+        self.beginResetModel()
         self.notes = Note.query.order_by(desc(Note.created_at)).all()
+        session.commit()
+        self.endResetModel()
 
     def save(self):
         session.commit()
@@ -184,6 +190,7 @@ class NoteModel(QAbstractTableModel):
     #dirty helper method used for direct access to tag model
     def addTagging(self, tag_model):
         self.tag_model = tag_model
+        
 
 
 class NotebookModel(QAbstractListModel):
@@ -322,4 +329,8 @@ class TagModel(QAbstractListModel):
     def load(self):
         self.reset()
         self.tags =Tag.query.all()
+        
+        
+class NoteProxyModel():
+    pass
 

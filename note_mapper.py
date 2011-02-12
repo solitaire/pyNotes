@@ -48,7 +48,7 @@ class NoteMapper:
 # Overwrites default behaviour of presenting note's notebook
               
 class NotebookDelegate(QtGui.QItemDelegate):
-    def __init__(self, parent=None):
+    def __init__(self,parent=None):
         super(NotebookDelegate, self).__init__(parent)
         self.parent = parent
         

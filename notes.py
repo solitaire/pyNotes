@@ -77,20 +77,20 @@ class NotesMain(QtGui.QMainWindow):
 		#assign models to views
 		self.notebooks_model = NotebookModel()
 		self.tags_model = TagModel()
-		self.notes_base_model = NoteModel()
-		self.notes_base_model.addTagging(self.tags_model)
+		self.notes_model = NoteModel()
+		self.notes_model.addTagging(self.tags_model)
 		
-		self.notes_model = QSortFilterProxyModel()
-		self.notes_model.setSourceModel(self.notes_base_model)
+		self.proxy_model = QSortFilterProxyModel()
+		self.proxy_model.setSourceModel(self.notes_model)
 		
-		self.ui.notes.setModel(self.notes_model)
+		self.ui.notes.setModel(self.proxy_model)
 		self.ui.notebooks.setModel(self.notebooks_model)
 		self.ui.tags.setModel(self.tags_model)
 		self.ui.notes.setColumnHidden(BODY, True)
 		self.ui.notes.setColumnHidden(TAGS, True)
-		self.ui.notes.sortByColumn(CREATED_AT, Qt.DescendingOrder)
+		self.ui.notes.setSortingEnabled(True)
 		
-		self.note_mapper = NoteMapper(self, self.notes_model, [self.ui.notesTextEdit, self.ui.titleEdit, self.ui.notebooksBox, self.ui.notesTags])
+		self.note_mapper = NoteMapper(self, self.proxy_model, [self.ui.notesTextEdit, self.ui.titleEdit, self.ui.notebooksBox, self.ui.notesTags])
 		self.note_mapper.toFirst()
 		#initial state must be set manually
 		self.ui.notebooksBox.setModel(self.notebooks_model)
@@ -154,7 +154,7 @@ class NotesMain(QtGui.QMainWindow):
 	
 	@QtCore.pyqtSlot("const QModelIndex &")	
 	def editInNewWindow(self, index):
-		note_form = NoteForm(self, self.notes_model,self.notebooks_model, index)
+		note_form = NoteForm(self, self.notes_model,self.notebooks_model, self.proxy_model.mapToSource(index))
 		note_form.show()
 	
 	@QtCore.pyqtSlot()
