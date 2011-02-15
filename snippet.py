@@ -36,8 +36,11 @@ class SnippetDialog(QtGui.QDialog, Ui_Dialog):
         self.__insert_langs()
           
     def accepted(self):
+        old_format = self.text_edit.textCursor().blockFormat()
         result = self.__pygmentize("%s" % (self.textEdit.toPlainText()))
-        self.text_edit.append(result)
+        self.text_edit.textCursor().insertBlock()
+        self.text_edit.insertHtml(result)
+        self.text_edit.textCursor().insertBlock(old_format)
         
     def rejected(self):
         self.close()
@@ -53,13 +56,3 @@ class SnippetDialog(QtGui.QDialog, Ui_Dialog):
         formatter.noclasses = True
         return highlight(text, lexer, formatter)
     
-    
-
-    
-
-
-
-
-        
-
-                    
