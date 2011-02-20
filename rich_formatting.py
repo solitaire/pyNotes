@@ -33,14 +33,13 @@ class RichFormatting:
         self.ui.italicButton.clicked.connect(self.text_italic)
         self.ui.underlineButton.clicked.connect(self.text_underline)
         
-        QtCore.QObject.connect(self.ui.centerButton, QtCore.SIGNAL("clicked()"),
-                                lambda format="center": self.text_align(format))
-        QtCore.QObject.connect(self.ui.justifyButton, QtCore.SIGNAL("clicked()"),
-                                lambda format="justify": self.text_align(format)) 
-        QtCore.QObject.connect(self.ui.alignleftButton, QtCore.SIGNAL("clicked()"),
-                                lambda format="left": self.text_align(format))
-        QtCore.QObject.connect(self.ui.alignrightButton, QtCore.SIGNAL("clicked()"),
-                                lambda format="right": self.text_align(format))
+
+        helper = lambda format: (lambda: self.text_align(format))
+        
+        self.ui.centerButton.clicked.connect(helper("center"))
+        self.ui.justifyButton.clicked.connect(helper("justify"))
+        self.ui.alignleftButton.clicked.connect(helper("left"))
+        self.ui.alignrightButton.clicked.connect(helper("right"))
         
         QtCore.QObject.connect(self.ui.undoButton,  QtCore.SIGNAL("clicked()"), self.ui.notesTextEdit, QtCore.SLOT('undo()'))
         QtCore.QObject.connect(self.ui.redoButton,  QtCore.SIGNAL("clicked()"), self.ui.notesTextEdit, QtCore.SLOT('redo()'))
@@ -71,7 +70,9 @@ class RichFormatting:
         format.setFontUnderline(self.ui.underlineButton.isChecked())
         self.apply_on_selection(format)
         
+    @QtCore.pyqtSlot()
     def text_align(self, format):
+        print format
         if format == "left":
             self.ui.notesTextEdit.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignAbsolute)
         elif format == "center":

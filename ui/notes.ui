@@ -34,7 +34,7 @@
        </size>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0" colspan="2">
+       <item row="0" column="0" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLineEdit" name="searchField"/>
@@ -61,7 +61,7 @@
          </item>
         </layout>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="1" column="0" colspan="3">
         <widget class="QTreeView" name="notes">
          <property name="minimumSize">
           <size>
@@ -95,7 +95,7 @@
          </attribute>
         </widget>
        </item>
-       <item row="2" column="0" colspan="2">
+       <item row="2" column="0" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QLineEdit" name="titleEdit"/>
@@ -122,7 +122,7 @@
          </item>
         </layout>
        </item>
-       <item row="3" column="0" colspan="2">
+       <item row="3" column="0" colspan="3">
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="1">
           <widget class="QPushButton" name="exportToPdfButton">
@@ -221,6 +221,22 @@
           <widget class="QLineEdit" name="notesTags"/>
          </item>
         </layout>
+       </item>
+       <item row="4" column="2">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>171</width>
+           <height>29</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="0" colspan="3">
+        <widget class="QTextEdit" name="notesTextEdit"/>
        </item>
        <item row="4" column="0">
         <layout class="QGridLayout" name="gridLayout_2">
@@ -603,23 +619,48 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="11">
+          <widget class="QPushButton" name="bulletListButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>22</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>22</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../icons/icons.qrc">
+             <normaloff>:/icons/list_bullets.png</normaloff>:/icons/list_bullets.png</iconset>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
         </layout>
-       </item>
-       <item row="4" column="1">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>171</width>
-           <height>29</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="5" column="0" colspan="2">
-        <widget class="QTextEdit" name="notesTextEdit"/>
        </item>
       </layout>
      </widget>
