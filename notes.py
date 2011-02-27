@@ -30,6 +30,7 @@ from rich_formatting import *
 from exporter import *
 from snippet import *
 from tray import *
+from notes_tabbar import *
 
 		
 class NotesMain(QtGui.QMainWindow):
@@ -62,6 +63,7 @@ class NotesMain(QtGui.QMainWindow):
 		self.ui.searchButton.clicked.connect(self.search)
 		self.ui.snippetButton.clicked.connect(self.addSnippet)
 		self.ui.actionNew_tag.triggered.connect(self.createTag)
+		self.openInNewTabAction.triggered.connect(self.openInNewTab)
 		
 	
 	def createActions(self):
@@ -69,6 +71,7 @@ class NotesMain(QtGui.QMainWindow):
 		self.addNoteToNotebookAction = QtGui.QAction("Add note", self)
 		self.destroyNoteAction =  QtGui.QAction("Delete note", self)
 		self.destroyTagAction = QtGui.QAction("Delete tag", self)
+		self.openInNewTabAction = QtGui.QAction("Open in new tab", self)
 		
 	def initMVC(self):
 		self.ui = Ui_Notebook()
@@ -104,6 +107,16 @@ class NotesMain(QtGui.QMainWindow):
 		self.createContextMenuForNotebooks()
 		self.createContextMenuForNotes()
 		self.createContextMenuForTags()
+		
+		
+		#add tabbar
+		self.ui.tabBar = NotesTabBar(self.ui.widget)
+		self.ui.tabBar.setTabsClosable(True)
+		self.ui.tabBar.setObjectName("tabBar")
+		self.ui.tabsLayout.addWidget(self.ui.tabBar)
+		
+		self.ui.tabBar.tabCloseRequested.connect(self.closeTab)
+		self.ui.tabBar.currentChanged.connect(self.reloadNote)
 
 	
 	@QtCore.pyqtSlot()
@@ -120,6 +133,7 @@ class NotesMain(QtGui.QMainWindow):
 		self.ui.notes.customContextMenuRequested.connect(self.onContextNote)
 		self.menu_for_note = QtGui.QMenu("Menu note", self.ui.notes)
 		self.menu_for_note.addAction(self.destroyNoteAction)
+		self.menu_for_note.addAction(self.openInNewTabAction)
 		
 	@QtCore.pyqtSlot()
 	def createContextMenuForTags(self):
@@ -215,6 +229,14 @@ class NotesMain(QtGui.QMainWindow):
 		note.notebook = None
 		self.note_mapper.setCurrentIndex(index.row())
 		session.commit()
+	
+	@QtCore.pyqtSlot()
+	def openInNewTab(self):
+		print "open new tab"
+		note_index = self.ui.notes.currentIndex()
+		index = self.proxy_model.mapToSource(note_index)
+		title = self.notes_model.getNote(index).title
+		self.ui.tabBar.addTab(title, note_index)
 		
 	@QtCore.pyqtSlot()	
 	def search(self):
@@ -224,6 +246,16 @@ class NotesMain(QtGui.QMainWindow):
 	@QtCore.pyqtSlot()
 	def quit(self):
 		sys.exit()
+		
+	@QtCore.pyqtSlot(int)
+	def closeTab(self, index):
+		self.ui.tabBar.removeTab(index)
+		
+	@QtCore.pyqtSlot(int)
+	def reloadNote(self, index):
+		note_index = self.ui.tabBar.tabs[index]
+		self.note_mapper.setCurrentIndex(note_index.row())
+		
 	
 	#overwrite event
 	def closeEvent(self, event):
