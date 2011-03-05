@@ -27,10 +27,10 @@ class NoteMapper:
         self.mapper.setSubmitPolicy(QtGui.QDataWidgetMapper.AutoSubmit)
         self.mapper.setModel(model)
         self.mapper.setItemDelegate(NotebookDelegate(parent))
-        self.mapper.addMapping(widgets[0], BODY)
-        self.mapper.addMapping(widgets[1], TITLE)
-        self.mapper.addMapping(widgets[2], NOTEBOOK)
-        self.mapper.addMapping(widgets[3], TAGS)
+        self.mapper.addMapping(widgets.notesTextEdit, BODY)
+        self.mapper.addMapping(widgets.titleEdit, TITLE)
+        self.mapper.addMapping(widgets.notebooksBox, NOTEBOOK)
+        self.mapper.addMapping(widgets.notesTags, TAGS)
         
     def setCurrentIndex(self, index):
         self.mapper.setCurrentIndex(index)

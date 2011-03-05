@@ -32,12 +32,11 @@ class NoteForm(QtGui.QDialog):
         self.ui= Ui_NoteEdit()
         self.ui.setupUi(self)
         self.ui.notebooksBox.setModel(self.notebooks_model)    
-        self.widgets = [self.ui.notesTextEdit, self.ui.titleEdit, self.ui.notebooksBox, self.ui.notesTags]
         self.createMapper(index)
         self.rich_edit = RichFormatting(self.ui)
         self.note_exporter = NoteExporter(self, self.ui)
         
     def createMapper(self, index):
-        self.mapper = NoteMapper(self, self.notes_model, self.widgets)
+        self.mapper = NoteMapper(self, self.notes_model, self.ui)
         self.mapper.setCurrentIndex(index.row())
         

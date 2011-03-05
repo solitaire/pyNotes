@@ -93,7 +93,7 @@ class NotesMain(QtGui.QMainWindow):
 		self.ui.notes.setColumnHidden(TAGS, True)
 		self.ui.notes.setSortingEnabled(True)
 		
-		self.note_mapper = NoteMapper(self, self.proxy_model, [self.ui.notesTextEdit, self.ui.titleEdit, self.ui.notebooksBox, self.ui.notesTags])
+		self.note_mapper = NoteMapper(self, self.proxy_model, self.ui)
 		self.note_mapper.toFirst()
 		#initial state must be set manually
 		self.ui.notebooksBox.setModel(self.notebooks_model)
